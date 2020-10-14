@@ -11,7 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "connected-react-router": "^6.8.0",
     "firebase": "^7.23.0",
-    "history": "^5.0.0",
+    "history": "4.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -21,7 +21,8 @@
     "redux-actions": "^2.6.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
