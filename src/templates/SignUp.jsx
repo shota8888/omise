@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react'
-import { TextInput, PraimaryButton } from '../components/UIkit/index'
+import { TextInput, PrimaryButton } from '../components/UIkit/index'
 import { signUp } from '../reducks/users/operations'
+import { push } from 'connected-react-router'
 import { useDispatch } from 'react-redux'
-import { MSpace } from '../assets/utilStyles'
+import { MSpace, SContainer, SCenter, PLink } from '../styles/index'
 
 const SignUp = () => {
   const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const SignUp = () => {
   }, [setConfirmPassword]);
 
   return (
-    <div className="c-section-container">
+    <SContainer>
       <h2 className="u-text__headline u-text-center">アカウント登録</h2>
       <MSpace />
       <TextInput 
@@ -49,13 +50,15 @@ const SignUp = () => {
         rows={1} value={confirmPassword} type={"password"} onChange={inputConfirmPassword}
       />
       <MSpace />
-      <div className="center">
-        <PraimaryButton
+      <SCenter>
+        <PrimaryButton
           label={"アカウントを登録する"}
           onClick={() => dispatch(signUp(username, email, password, confirmPassword))}
         />
-      </div>
-    </div>
+        <MSpace />
+        <PLink onClick={() => dispatch(push('/signin'))}>アカウントをお持ちの方はこちら</PLink>
+      </SCenter>
+    </SContainer>
   )
 }
 

@@ -1,26 +1,22 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/styles'
-
-const useStayles = makeStyles({
-  "button": {
-    backgroundColor: "#4dd0e1",
-    color: "#000",
-    fontSize: 16,
-    height: 48,
-    marginBottom: 16,
-    width: 256
-  }
-})
+import styled from 'styled-components'
 
 const PrimaryButton = (props) => {
-  const classes = useStayles();
-
   return (
-    <Button className={classes.button} variant="contained" onClick={() => props.onClick()}>
+    <StButton variant="contained" onClick={() => props.onClick()}>
       {props.label}
-    </Button>
+    </StButton>
   )
 }
+
+const StButton = styled(Button)`
+  background-color: #2490D0;
+  color: #fff;
+  font-size: 16px;
+  height: 48px;
+  margin-bottom: 16px;
+  width: 256px;
+`
 
 export default PrimaryButton

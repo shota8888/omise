@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import * as History from 'history';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { StylesProvider } from '@material-ui/styles';
 
 const history = History.createBrowserHistory();
 export const store = createStore(history);
@@ -13,7 +14,9 @@ export const store = createStore(history);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history} >
-      <App />
+      <StylesProvider injectFirst>
+        <App />
+      </StylesProvider>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
