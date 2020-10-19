@@ -3,7 +3,7 @@ import { TextInput, PrimaryButton } from '../components/UIkit/index'
 import { resetPassword } from '../reducks/users/operations'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
-import { MSpace, SContainer, SCenter, PLink } from '../styles/index'
+import { MSpace, HMain, SContainer, SCenter, PLink } from '../styles/index'
 
 const Reset = () => {
   const dispatch = useDispatch()
@@ -11,12 +11,12 @@ const Reset = () => {
   const [email, setEmail] = useState("");
 
   const inputEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, [setEmail]);
+    setEmail(e.target.value)
+  }, [setEmail])
 
   return (
     <SContainer>
-      <h2 className="u-text__headline u-text-center">パスワードリセット</h2>
+      <HMain>パスワードリセット</HMain>
       <MSpace />
       <TextInput 
         fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
@@ -35,4 +35,4 @@ const Reset = () => {
   )
 }
 
-export default Reset;
+export default Reset

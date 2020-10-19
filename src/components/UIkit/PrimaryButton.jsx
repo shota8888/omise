@@ -17,6 +17,9 @@ const StButton = styled(Button)`
   height: 48px;
   margin-bottom: 16px;
   width: 256px;
+  &:hover {
+    background-color: rgba(36,144,208,.9); 
+  }
 `
 
 export default PrimaryButton

@@ -3,7 +3,7 @@ import { TextInput, PrimaryButton } from '../components/UIkit/index'
 import { signUp } from '../reducks/users/operations'
 import { push } from 'connected-react-router'
 import { useDispatch } from 'react-redux'
-import { MSpace, SContainer, SCenter, PLink } from '../styles/index'
+import { MSpace, HMain, SContainer, SCenter, PLink } from '../styles/index'
 
 const SignUp = () => {
   const dispatch = useDispatch()
@@ -15,23 +15,23 @@ const SignUp = () => {
 
   const inputUsername = useCallback((e) => {
     setUsername(e.target.value);
-  }, [setUsername]);
+  }, [setUsername])
 
   const inputEmail = useCallback((e) => {
     setEmail(e.target.value);
-  }, [setEmail]);
+  }, [setEmail])
 
   const inputPassword = useCallback((e) => {
     setPassword(e.target.value);
-  }, [setPassword]);
+  }, [setPassword])
 
   const inputConfirmPassword = useCallback((e) => {
     setConfirmPassword(e.target.value);
-  }, [setConfirmPassword]);
+  }, [setConfirmPassword])
 
   return (
     <SContainer>
-      <h2 className="u-text__headline u-text-center">アカウント登録</h2>
+      <HMain>アカウント登録</HMain>
       <MSpace />
       <TextInput 
         fullWidth={true} label={"ユーザー名"} multiline={false} required={true}
@@ -42,11 +42,11 @@ const SignUp = () => {
         rows={1} value={email} type={"email"} onChange={inputEmail}
       />
       <TextInput 
-        fullWidth={true} label={"パスワード"} multiline={false} required={true}
+        fullWidth={true} label={"パスワード（半角英数字で6文字以上）"} multiline={false} required={true}
         rows={1} value={password} type={"password"} onChange={inputPassword}
       />
       <TextInput 
-        fullWidth={true} label={"パスワード（再確認）"} multiline={false} required={true}
+        fullWidth={true} label={"パスワードの再確認"} multiline={false} required={true}
         rows={1} value={confirmPassword} type={"password"} onChange={inputConfirmPassword}
       />
       <MSpace />
@@ -62,4 +62,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+export default SignUp

@@ -13,13 +13,22 @@ export const utilStyles = {
     `
   },
 
+  Heading: {
+    main: styled.h2`
+      color: #2D2D2D;
+      font-size: 1.563rem;
+      margin: 0 auto 1rem auto;
+      text-align: center;
+    `
+  },
+
   Section: {
     main: styled.div`
       padding: 96px 0
     `,
     center: styled.div`
-    margin: 0 auto;
-    text-align: center;
+      margin: 0 auto;
+      text-align: center;
     `,
     container: styled.div`
       margin: 0 auto;
@@ -35,6 +44,10 @@ export const utilStyles = {
       display: flex;
       align-items: center;
       flex-flow: column;
+    `,
+    flexWrap: styled.div`
+      display: flex;
+      flex-flow: wrap;
     `
   },
 

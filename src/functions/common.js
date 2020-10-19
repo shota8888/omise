@@ -4,11 +4,11 @@
  * @returns {boolean}
  */
 export const isValidRequiredInput = (...args) => {
-  let validator = true;
+  let validator = true
 
   for (let i = 0; i < args.length; i=(i+1)|0) {
     if (args[i] === "") {
-      validator = false;
+      validator = false
     }
   }
 
@@ -21,6 +21,6 @@ export const isValidRequiredInput = (...args) => {
  * @returns {boolean}
  */
 export const isValidEmailFormat = (email) => {
-  const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  return regex.test(email);
-};
+  const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  return regex.test(email)
+}
