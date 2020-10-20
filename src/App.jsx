@@ -1,19 +1,22 @@
 import React from 'react'
 import Router from './Router'
-import { ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { ThemeProvider as MaterialThemeProvider } from "@material-ui/styles"
+import { ThemeProvider as StyledThemeProvider, } from "styled-components"
+import { SMain } from './styles'
 import { theme } from './styles/theme'
 import { GlobalStyle } from './styles'
 import './assets/style.css'
+import { Header } from './components/Header'
 
 const App = () => {
   return (
     <MaterialThemeProvider theme={theme}>
       <StyledThemeProvider theme={theme}>
         <GlobalStyle />
-        <main>
+        <Header />
+        <SMain>
           <Router />
-        </main>
+        </SMain>
       </StyledThemeProvider>
     </MaterialThemeProvider>
   )

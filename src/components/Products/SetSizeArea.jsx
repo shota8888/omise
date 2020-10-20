@@ -51,10 +51,11 @@ const SetSizeArea = (props) => {
   }
 
   const deleteSize = (deleteIndex) => {
-    const newSizes = props.sizes.filter((item, i) => i !== deleteIndex)
+    const newSizes = props.sizes.filter((_, index) => index !== deleteIndex)
     props.setSizes(newSizes)
   }
 
+  // indexを保持
   useEffect(() => {
     setIndex(props.sizes.length)
   }, [props.sizes.length])
