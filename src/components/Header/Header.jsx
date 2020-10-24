@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import styled from 'styled-components/macro'
 import { getSignedIn } from '../../reducks/users/selectors'
-import { HeaderMenus } from './index'
+import { HeaderMenus, ClosableDrawer } from './index'
 
 const Header = () => {
   const dispatch = useDispatch()
   const selector = useSelector(state => state)
   const isSignedIn = getSignedIn(selector)
+
+  const [open, setOpen] = useState(false)
+
+  const handleDrawerToggle = useCallback((e) => {
+    if (e.type === 'keydown' && e.key !== 'Enter') {
+      return
+    }
+    setOpen(!open)
+  }, [open, setOpen])
+
   return (
     <div css='flex-grow: 1'>
       <StAppBar position='fixed'>
@@ -23,11 +33,12 @@ const Header = () => {
           </Typography>
           {isSignedIn && (
             <div css='margin: 0 0 0 auto;'>
-              < HeaderMenus />
+              <HeaderMenus handleDrawerToggle={handleDrawerToggle} />
             </div>
           )}
         </StToolbar>
       </StAppBar>
+      <ClosableDrawer open={open} onClose={handleDrawerToggle} />
     </div>
   )
 }
