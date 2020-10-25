@@ -40,7 +40,6 @@ const SetSizeArea = (props) => {
         setSize('')
         setQuantity(0) 
       }
-      
     }
   }
 

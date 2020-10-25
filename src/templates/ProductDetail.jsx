@@ -1,12 +1,14 @@
-import React, {useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React, {useState, useEffect, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import { HMain, SSpace, SWrapin, FRowWrap } from '../styles'
-import { db } from '../firebase/index'
+import { db, FirebaseTimestamp } from '../firebase/index'
+import { addProductToCart } from '../reducks/users/operations'
 import { returnCodeToBr } from '../functions/common'
 import { ImageSwiper, SizeTable } from '../components/Products'
 
 const ProductDetail = () => {
+  const dispatch = useDispatch()
   const selector = useSelector(state => state)
   const path = selector.router.location.pathname
   const id = path.split('/product/')[1]
@@ -21,6 +23,21 @@ const ProductDetail = () => {
       })
   }, [])
 
+  const addProduct = useCallback((selectedSize) => {
+    const timestamp = FirebaseTimestamp.now()
+    dispatch(addProductToCart({
+      added_at: timestamp,
+      productId: product.id,
+      name: product.name,
+      description: product.description,
+      gender: product.gender,
+      price: product.price,
+      images: product.images,
+      size: selectedSize,
+      quantity: 1
+    }))
+  }, [product])
+
   return (
     <SWrapin>
       {product && (
@@ -32,7 +49,7 @@ const ProductDetail = () => {
             <HMain>{product.name}</HMain>
             <p css='font-size: 36px;'>¥{product.price.toLocaleString()}</p>
             <SSpace />
-            <SizeTable sizes={product.sizes} />
+            <SizeTable addProduct={addProduct} sizes={product.sizes} />
             <SSpace />
             <p>{returnCodeToBr(product.description)}</p>
           </StDetail>

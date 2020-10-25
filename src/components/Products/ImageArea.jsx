@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { IconButton } from '@material-ui/core'
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 import styled from 'styled-components/macro'
 import { FWrap } from '../../styles'
 import { storage } from '../../firebase'

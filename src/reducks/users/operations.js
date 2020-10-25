@@ -1,5 +1,5 @@
-import { signInAction, signOutAction } from './actions'
 import { push } from 'connected-react-router'
+import { signInAction, signOutAction, fetchProductsInCartAction } from './actions'
 import { auth, FirebaseTimestamp, db } from '../../firebase/index'
 import { isValidRequiredInput, isValidEmailFormat } from '../../functions/common'
 
@@ -143,5 +143,21 @@ export const resetPassword = (email) => {
           alert('登録されていないメールアドレスです。もう一度ご確認ください。')
         })
     }
+  }
+}
+
+export const addProductToCart = (addedProduct) => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid
+    const cartRef = usersRef.doc(uid).collection('cart').doc()
+    addedProduct['cartId'] = cartRef.id
+    await cartRef.set(addedProduct)
+    dispatch(push('/'))
+  }
+}
+
+export const fetchProductsInCart = (products) => {
+  return async (dispatch) => {
+    dispatch(fetchProductsInCartAction(products))
   }
 }

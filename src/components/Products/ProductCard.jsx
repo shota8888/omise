@@ -51,10 +51,11 @@ const ProductCard = (props) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={() => {
-            dispatch(push('/product/edit/' + props.id))
-            handleClose()
-          }}
+          <MenuItem 
+            onClick={() => {
+              dispatch(push('/product/edit/' + props.id))
+              handleClose()
+            }}
           >
             編集する
           </MenuItem>
