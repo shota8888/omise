@@ -36,7 +36,7 @@ const ProductDetail = () => {
       size: selectedSize,
       quantity: 1
     }))
-  }, [product])
+  }, [product, dispatch])
 
   return (
     <SWrapin>

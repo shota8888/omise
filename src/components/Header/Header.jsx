@@ -4,7 +4,7 @@ import { push } from 'connected-react-router'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import styled from 'styled-components/macro'
 import { getSignedIn } from '../../reducks/users/selectors'
-import { HeaderMenus, ClosableDrawer } from './index'
+import { HeaderMenu, ClosableDrawer } from './index'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -33,7 +33,7 @@ const Header = () => {
           </Typography>
           {isSignedIn && (
             <div css='margin: 0 0 0 auto;'>
-              <HeaderMenus handleDrawerToggle={handleDrawerToggle} />
+              <HeaderMenu handleDrawerToggle={handleDrawerToggle} />
             </div>
           )}
         </StToolbar>

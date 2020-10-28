@@ -1,10 +1,10 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const PrimaryButton = (props) => {
   return (
-    <StButton variant="contained" onClick={() => props.onClick()}>
+    <StButton variant="contained" onClick={() => props.onClick()} grey={props.grey}>
       {props.label}
     </StButton>
   )
@@ -18,8 +18,15 @@ const StButton = styled(Button)`
   margin-bottom: 16px;
   width: 256px;
   &:hover {
-    background-color: rgba(36,144,208,.9); 
+    background-color: #2E9EDF
   }
+  ${({grey}) => grey ? css`
+        background-color: ${props => props.theme.palette.grey["300"]};
+        color: #000;
+        &:hover {
+          background-color: ${props => props.theme.palette.grey["400"]}; 
+        }
+    ` : ''}
 `
 
 export default PrimaryButton

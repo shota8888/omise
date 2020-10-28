@@ -29,7 +29,7 @@ export const isValidEmailFormat = (email) => {
 
 /**
  * Convert Carriage Return and Line Feed into <br> tag.
- * @param {string} ext The row text
+ * @param {string} text The row text
  * @returns {void | string | never} The formatted text
  * */
 export const returnCodeToBr = (text) => {
