@@ -30,8 +30,8 @@ const ImageSwiper = (props) => {
         </StMediaThumb>
       ) : (
         images.map(image => (
-          <StMediaThumb>
-            <img src={image.path} alt={'商品画像'} />
+          <StMediaThumb key={image.id}>
+            <img src={image.path} alt='商品画像' />
           </StMediaThumb>
         ))
       )}

@@ -12,7 +12,7 @@ const Auth = ({ children }) => {
     if (!isSignedIn) {
       dispatch(listenAuthState())
     }
-  }, [dispatch, isSignedIn])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!isSignedIn) {
     return <></>

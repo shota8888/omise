@@ -6,7 +6,6 @@ export const MSpace = utilStyles.Spacer.medium
 export const SSpace = utilStyles.Spacer.small
 export const ESSpace = utilStyles.Spacer.exSmall
 
-
 export const HMain = utilStyles.Heading.main
 
 export const SMain = utilStyles.Section.main

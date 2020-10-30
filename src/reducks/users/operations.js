@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router'
-import { signInAction, signOutAction, fetchProductsInCartAction } from './actions'
+import { signInAction, signOutAction, fetchProductsInCartAction, fetchOrdersHistoryAction } from './actions'
 import { auth, FirebaseTimestamp, db } from '../../firebase/index'
 import { isValidRequiredInput, isValidEmailFormat } from '../../functions/common'
 
@@ -17,6 +17,7 @@ export const listenAuthState = () => {
             }
 
             dispatch(signInAction({
+              email: data.email,
               isSignedIn: true,
               role: data.role,
               uid: user.uid,
@@ -69,7 +70,7 @@ export const signUp = (username, email, password, confirmPassword) => {
           }
 
           usersRef.doc(user.uid).set(userInitialData)
-            .then(() => {
+            .then(async () => {
               dispatch(push('/'))
             })
         }
@@ -93,26 +94,29 @@ export const signIn = (email, password) => {
     }
     
     return auth.signInWithEmailAndPassword(email, password)
-      .then(async result => {
+      .then(result => {
         const user = result.user
 
         if (!user) {
           throw new Error('ユーザーIDを取得できません')
         }
 
-        const snapshot = await usersRef.doc(user.uid).get()
-        const data = snapshot.data()
-        if (!data) {
-          throw new Error('ユーザーデータが存在しません')
-        }
+        return usersRef.doc(user.uid).get()
+          .then(snapshot => {
+            const data = snapshot.data()
+            if (!data) {
+              throw new Error('ユーザーデータが存在しません')
+            }
 
-        dispatch(signInAction({
-          isSignedIn: true,
-          role: data.role,
-          uid: user.uid,
-          username: data.username
-        }))
-        dispatch(push('/'))
+          dispatch(signInAction({
+            email: data.email,
+            isSignedIn: true,
+            role: data.role,
+            uid: user.uid,
+            username: data.username
+          }))
+          dispatch(push('/'))
+        })
       })
   }
 }
@@ -152,12 +156,29 @@ export const addProductToCart = (addedProduct) => {
     const cartRef = usersRef.doc(uid).collection('cart').doc()
     addedProduct['cartId'] = cartRef.id
     await cartRef.set(addedProduct)
-    dispatch(push('/'))
+    dispatch(push('/cart'))
   }
 }
 
 export const fetchProductsInCart = (products) => {
   return async (dispatch) => {
     dispatch(fetchProductsInCartAction(products))
+  }
+}
+
+export const fetchOrdersHistory = () => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid
+    const list = []
+
+    usersRef.doc(uid).collection('orders').orderBy('updated_at', 'desc').get()
+      .then((snapshots) => {
+        snapshots.forEach(snapshot => {
+          const data = snapshot.data()
+          list.push(data)
+        })
+
+        dispatch(fetchOrdersHistoryAction(list))
+      })
   }
 }

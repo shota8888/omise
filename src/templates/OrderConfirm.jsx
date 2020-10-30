@@ -25,7 +25,7 @@ const OrderConfirm = () => {
 
   const order = useCallback(() => {
     dispatch(orderProduct(productsInCart, total))
-  }, [dispatch, productsInCart, total])
+  }, [productsInCart]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SWrapin>

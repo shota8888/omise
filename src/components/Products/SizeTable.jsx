@@ -15,21 +15,21 @@ const SizeTable = (props) => {
       <Table>
         <TableBody>
           {sizes.length > 0 && (
-            sizes.map(size => (
-              <TableRow key={size.size}>
+            sizes.map(item => (
+              <TableRow key={item.size}>
                 <TableCell component='th' scope='row'>
-                  {size.size}
+                  {item.size}
                 </TableCell>
                 <TableCell>
-                  残り{size.quantity}点
+                  残り{item.quantity}点
                 </TableCell>
                 <StTableCell>
-                  {size.quantity > 0 ? (
-                    <StIconButton onClick={() => props.addProduct(size.size)}>
+                  {item.quantity > 0 ? (
+                    <StIconButton onClick={() => props.addProduct(item.size)}>
                       <ShoppingCartIcon />
                     </StIconButton> 
                   ) : (
-                    <div>在庫なし</div>
+                    <div>売切</div>
                   )}
                 </StTableCell>
                 <StTableCell>

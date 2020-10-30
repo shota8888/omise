@@ -21,7 +21,7 @@ const ProductDetail = () => {
         const data = doc.data()
         setProduct(data)
       })
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const addProduct = useCallback((selectedSize) => {
     const timestamp = FirebaseTimestamp.now()
@@ -36,7 +36,7 @@ const ProductDetail = () => {
       size: selectedSize,
       quantity: 1
     }))
-  }, [product, dispatch])
+  }, [product]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SWrapin>

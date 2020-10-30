@@ -28,7 +28,7 @@ const ImageArea = (props) => {
           props.setImages((prevState => [...prevState, newImage]))
         })
     })
-  }, [props])
+  }, [props.setImages]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const deleteImage = useCallback(async (id) => {
     const ret = window.confirm('この画像を削除しますか？')
@@ -39,7 +39,7 @@ const ImageArea = (props) => {
       props.setImages(newImages)
       return storage.ref('images').child(id).delete()
     }
-  }, [props, images])
+  }, [images]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>

@@ -39,3 +39,28 @@ export const returnCodeToBr = (text) => {
     return HTMLReactParser(text.replace(/\r?\n/g, '<br/>'))
   }
 }
+
+/**
+ * Convert datetime into the String.
+ * @param {Date} date 
+ * @returns {string} "YYYY-MM-DD"
+ */
+export const dateToString = (date) => {
+  return date.getFullYear() + '-' 
+    + ('00' + (date.getMonth()+1)).slice(-2) + '-'
+    + ('00' + date.getDate()).slice(-2)
+}
+
+/**
+ * Convert datetime into the String.
+ * @param {Date} date 
+ * @returns {string} "YYYY-MM-DDThh:mm:ss"
+ */
+export const datetimeToString = (date) => {
+  return date.getFullYear() + '-' 
+    + ('00' + (date.getMonth()+1)).slice(-2) + '-'
+    + ('00' + date.getDate()).slice(-2) + ' '
+    + ('00' + date.getHours()).slice(-2) + ':'
+    + ('00' + date.getMinutes()).slice(-2) + ':'
+    + ('00' + date.getSeconds()).slice(-2)
+}

@@ -15,11 +15,11 @@ const CartList = () => {
 
   const goToOrder = useCallback(() => {
     dispatch(push('/order/confirm'))
-  }, [dispatch])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const backToHome = useCallback(() => {
     dispatch(push('/'))
-  }, [dispatch])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SWrapin>
@@ -33,7 +33,7 @@ const CartList = () => {
     <FColumn>
       <PrimaryButton label={'レジへ進む'} onClick={goToOrder} />
       <ESSpace />
-      <PrimaryButton grey label={'ショッピングを続ける'} onClick={backToHome} />
+      <PrimaryButton grey='grey' label={'ショッピングを続ける'} onClick={backToHome} />
     </FColumn>
   </SWrapin>
   )

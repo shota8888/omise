@@ -5,12 +5,13 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import styled from 'styled-components/macro'
 import { db } from '../../firebase'
 import { getUserId } from '../../reducks/users/selectors'
+import NoImage from '../../assets/img/src/no_image.png'
 
 const CartListItem = (props) => {
   const selector = useSelector(state => state)
   const uid = getUserId(selector)
 
-  const image = props.product.images[0].path
+  const images = (props.product.images.length > 0) ? props.product.images : [{path: NoImage}]
   const name = props.product.name
   const price = props.product.price.toLocaleString()
   const size = props.product.size
@@ -23,7 +24,7 @@ const CartListItem = (props) => {
     <>
       <ListItem css='height: 128px;'>
         <ListItemAvatar>
-          <StImg src={image} alt='商品画像' />
+          <StImg src={images[0].path} alt='商品画像' />
         </ListItemAvatar>
         <div css='width: 100%;'>
           <ListItemText 

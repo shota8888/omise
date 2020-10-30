@@ -14,7 +14,7 @@ const Header = () => {
   const [open, setOpen] = useState(false)
 
   const handleDrawerToggle = useCallback((e) => {
-    if (e.type === 'keydown' && e.key !== 'Enter') {
+    if (e.type === 'keydown') {
       return
     }
     setOpen(!open)
