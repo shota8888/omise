@@ -8,13 +8,15 @@ import thunk from 'redux-thunk'
 
 import { UsersReducer } from '../users/reducers'
 import { ProductsReducer } from '../products/reducers'
+import { LoadingReducer } from '../loading/reducers'
 
 export default function createStore(history) {
   return reduxCreateStore (
     combineReducers({
       router: connectRouter(history),
+      users: UsersReducer,
       products: ProductsReducer,
-      users: UsersReducer
+      loading: LoadingReducer
     }),
     applyMiddleware(
       routerMiddleware(history),

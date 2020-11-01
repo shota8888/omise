@@ -1,7 +1,4 @@
 const initialState = {
-  products: {
-    list: []
-  },
   users: {
     isSignedIn: false,
     role: "",
@@ -9,6 +6,13 @@ const initialState = {
     username: "",
     cart: [],
     orders: []
+  },
+  products: {
+    list: []
+  },
+  loading: {
+    state: false,
+    text: ''
   }
 };
 

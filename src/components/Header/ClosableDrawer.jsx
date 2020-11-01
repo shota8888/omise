@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 import { 
   Divider, Drawer, List, ListItem, ListItemText,
@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components'
 import { db } from '../../firebase'
 import { signOut } from '../../reducks/users/operations'
+import { getUserRole } from '../../reducks/users/selectors'
 import { TextInput } from '../UIkit'
 
 const useStyles = makeStyles({
@@ -25,7 +26,10 @@ const useStyles = makeStyles({
 const ClosableDrawer = (props) => {
   const classes = useStyles
   const dispatch = useDispatch()
+  const selector = useSelector(state => state)
+  const userRole = getUserRole(selector)
 
+  const isAdministrator = (userRole === 'administrator')
   const {container} = props
   
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -90,12 +94,14 @@ const ClosableDrawer = (props) => {
           <Divider />
           <List>
             {menus.map(menu => (
-              <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
-                <ListItemIcon>
-                  {menu.icon}
-                </ListItemIcon>
-                <ListItemText primary={menu.label} />
-              </ListItem>
+              ((isAdministrator && menu.id === 'register') || menu.id !== 'register') && (
+                <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+                  <ListItemIcon>
+                    {menu.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={menu.label} />
+                </ListItem>
+              )
             ))}
             <ListItem button key='logout' onClick={(e) => { dispatch(signOut()); props.onClose(e); }}>
               <ListItemIcon>

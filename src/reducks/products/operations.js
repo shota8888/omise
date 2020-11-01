@@ -34,19 +34,19 @@ export const orderProduct = (productsInCart, amount) => {
     for (const product of productsInCart) {
       const snapshot = await productsRef.doc(product.productId).get()
       const sizes = snapshot.data().sizes
-
-      const updateSizes = sizes.map(size => {
-        if (size.size === product.size) {
-          if (size.quantity === 0) {
+    
+      const updateSizes = sizes.map(item => {
+        if (item.size === product.size) {
+          if (item.quantity === 0) {
             soldOutProducts.push(product.name)
-            return size
+            return item
           }
           return {
-            size: size.size,
-            quantity: size.quantity - 1
+            size: item.size,
+            quantity: item.quantity - 1
           }
         } else {
-          return size
+          return item
         }
       })
 

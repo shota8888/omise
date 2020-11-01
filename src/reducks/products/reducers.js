@@ -13,6 +13,10 @@ export const ProductsReducer = (state = initialState.products, action) => {
         ...state,
         list: [...action.payload]
       }
+    case Actions.INIT_PRODUCTS:
+      return {
+        ...initialState.products
+      }
     default:
       return state
   }

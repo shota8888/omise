@@ -5,18 +5,20 @@ import { ThemeProvider as StyledThemeProvider, } from "styled-components"
 import { SMain } from './styles'
 import { theme } from './styles/theme'
 import { GlobalStyle } from './styles'
-import './assets/style.css'
+import { Loading } from './components/UIkit'
 import { Header } from './components/Header'
 
 const App = () => {
   return (
     <MaterialThemeProvider theme={theme}>
       <StyledThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Header />
-        <SMain>
-          <Router />
-        </SMain>
+        <Loading>
+          <GlobalStyle />
+          <Header />
+          <SMain>
+            <Router />
+          </SMain>
+        </Loading>
       </StyledThemeProvider>
     </MaterialThemeProvider>
   )
